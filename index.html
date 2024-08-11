@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Tareas Minimalista</title>
+    <style>
+        body, html {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            background-color: #f7f3e9;
+        }
+        .container {
+            max-width: 400px;
+            margin: 2rem auto;
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 1.5rem;
+        }
+        h1 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #333;
+        }
+        .input-group {
+            display: flex;
+            margin-bottom: 1rem;
+        }
+        #todoInput {
+            flex-grow: 1;
+            padding: 0.5rem;
+            border: 1px solid #ddd;
+            border-radius: 4px 0 0 4px;
+            font-size: 1rem;
+        }
+        #addButton {
+            padding: 0.5rem 1rem;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 0 4px 4px 0;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            display: flex;
+            align-items: center;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #eee;
+        }
+        .checkbox {
+            margin-right: 0.5rem;
+            width: 18px;
+            height: 18px;
+            border: 2px solid #4CAF50;
+            border-radius: 50%;
+            display: inline-block;
+            cursor: pointer;
+        }
+        .checked .checkbox {
+            background-color: #4CAF50;
+        }
+        .checked span {
+            text-decoration: line-through;
+            color: #888;
+        }
+        .star {
+            margin-left: auto;
+            color: #FFD700;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>HOY</h1>
+        <div class="input-group">
+            <input type="text" id="todoInput" placeholder="Agregar una nueva tarea...">
+            <button id="addButton">Agregar</button>
+        </div>
+        <ul id="todoList"></ul>
+    </div>
+
+    <script>
+        // Obtener referencias a los elementos del DOM
+        const todoInput = document.getElementById('todoInput');
+        const addButton = document.getElementById('addButton');
+        const todoList = document.getElementById('todoList');
+
+        // Agregar eventos a los elementos
+        addButton.addEventListener('click', addTodo);
+        todoInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') addTodo();
+        });
+
+        /**
+         * Función para agregar una nueva tarea a la lista
+         */
+        function addTodo() {
+            const todoText = todoInput.value.trim();
+            if (todoText) {
+                // Crear un nuevo elemento de lista
+                const li = document.createElement('li');
+                li.innerHTML = `
+                    <div class="checkbox"></div>
+                    <span>${todoText}</span>
+                    <div class="star">☆</div>
+                `;
+                todoList.appendChild(li);
+                todoInput.value = ''; // Limpiar el campo de entrada
+
+                // Agregar funcionalidad al checkbox
+                li.querySelector('.checkbox').addEventListener('click', function() {
+                    li.classList.toggle('checked');
+                });
+
+                // Agregar funcionalidad a la estrella
+                li.querySelector('.star').addEventListener('click', function() {
+                    this.textContent = this.textContent === '☆' ? '★' : '☆';
+                });
+            }
+        }
+
+        /**
+         * Explicación de las funcionalidades principales:
+         * 
+         * 1. addTodo(): 
+         *    - Se activa al hacer clic en el botón "Agregar" o presionar Enter en el campo de entrada.
+         *    - Crea un nuevo elemento de lista con un checkbox, el texto de la tarea y una estrella.
+         *    - Agrega la nueva tarea a la lista y limpia el campo de entrada.
+         * 
+         * 2. Evento del checkbox:
+         *    - Al hacer clic en el checkbox, alterna la clase 'checked' en el elemento de la lista.
+         *    - Esto cambia visualmente el estado de la tarea (completada/no completada).
+         * 
+         * 3. Evento de la estrella:
+         *    - Al hacer clic en la estrella, alterna entre '☆' y '★'.
+         *    - Permite marcar tareas como importantes o prioritarias.
+         */
+    </script>
+</body>
+</html>
