@@ -27,7 +27,7 @@ TaskFlow es una aplicación web minimalista y elegante para la gestión de tarea
 
 1. Clona el repositorio:
 ```bash
-git clone https://github.com/tu-usuario/TaskFlow.git
+git clone https://github.com/MondoBoricua/TaskFlow.git
 ```
 
 2. Navega al directorio del proyecto:
@@ -75,8 +75,8 @@ Este proyecto está bajo la Licencia MIT - ver el archivo [LICENSE](LICENSE) par
 ## 👥 Autor
 
 - Nombre del Autor
-- GitHub: [@tu-usuario](https://github.com/tu-usuario)
+- GitHub: [@MondoBoricua](https://github.com/MondoBoricua)
 
 ---
 
-⌨️ con ❤️ por [Tu Nombre](https://github.com/tu-usuario)
+⌨️ con ❤️ por [MondoBoricua](https://github.com/MondoBoricua)
